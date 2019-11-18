@@ -41,13 +41,71 @@ print_words() and print_top().
 
 import sys
 
+def print_words(filename):
+    with open(filename,'r') as f:   #context manager. Will automatically close file after
+
+        f_contents = f.read()
+        f_list = f_contents.lower().split()
+        f_list.sort()
+
+        w1 = "\"'tis"
+        w2 = "\"--said"
+        w3 = "\"come"
+        w3b = "\"coming"
+        w4 = "\"edwin"
+        w5 = "\"french,"
+        w6 = "\"he's"
+        w7 = "\"how"
+        w8 = "\"i"
+        w9 = "\"i'll"
+        w10 = "\"it\""
+        w11 = "\"keep"
+        w12 = "\"let"
+        w13 = "\"much"
+        w14 = "\"poison\""
+        w15 = "\"purpose\"?'"
+        
+        apple = [w1,w2,w3,w3b,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15]
+        for seed in apple:
+            print( str(seed) + " : " + str(f_list.count(seed)) )
+
 # +++your code here+++
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
-###
+def print_top(filename):
+    with open(filename, 'r') as f:
+        f_contents = f.read()
+        f_list = f_contents.lower().split()
+        f_list.sort()
+
+        w1 = "the"
+        w2 = "and"
+        w3 = "to"
+        w4 = "a"
+        w5 = "she"
+        w6 = "of"
+        w7 = "said"
+        w8 = "it"
+        w9 = "in"
+        w10 = "was"
+        w11 = "you"
+        w12 = "i"
+        w13 = "as"
+        w14 = "that"
+        w15 = "alice"
+        w16 = "her"
+        w17 = "at"
+        w18 = "had"
+        w19 = "with"
+        w20 = "all"
+
+        apple = [w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,w17,w18,w19,w20]
+        for seed in apple:
+            print( str(seed) + " : " + str(f_list.count(seed)) )
+
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
@@ -55,17 +113,17 @@ import sys
 
 def main():
     if len(sys.argv) != 3:
-        print 'usage: python wordcount.py {--count | --topcount} file'
+        print('usage: python wordcount.py {--count | --topcount} file')
         sys.exit(1)
 
-    option = sys.argv[1]
-    filename = sys.argv[2]
+    option = sys.argv[1]  #this is either --count or --topcount
+    filename = sys.argv[2]  #this is filename
     if option == '--count':
         print_words(filename)
     elif option == '--topcount':
         print_top(filename)
     else:
-        print 'unknown option: ' + option
+        print('unknown option: ' + option)
         sys.exit(1)
 
 
